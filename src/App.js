@@ -1,13 +1,63 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import AdminPanel from './components/AdminPanel';
+import AdminLogin from './components/AdminLogin';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import productsData from './products.json';
 
-function App() {
+// Componente de Admin Protegido
+function AdminRoute() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    checkAuthentication();
+  }, []);
+
+  const checkAuthentication = () => {
+    const session = localStorage.getItem('adminSession');
+    if (session) {
+      const sessionData = JSON.parse(session);
+      const now = new Date().getTime();
+      const fourHours = 4 * 60 * 60 * 1000; // 4 horas en milisegundos
+
+      // Verificar si la sesión sigue válida
+      if (now - sessionData.timestamp < fourHours) {
+        setIsAuthenticated(true);
+      } else {
+        // Sesión expirada
+        localStorage.removeItem('adminSession');
+        setIsAuthenticated(false);
+      }
+    }
+    setIsLoading(false);
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminSession');
+    setIsAuthenticated(false);
+  };
+
+  if (isLoading) {
+    return <div style={{ padding: '50px', textAlign: 'center' }}>Cargando...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return <AdminPanel onClose={handleLogout} />;
+}
+
+// Componente Principal de la Tienda
+function StorePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showAdmin, setShowAdmin] = useState(false);
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartOpen, setCartOpen] = useState(false);
@@ -93,9 +143,6 @@ function App() {
           </div>
 
           <div className="nav-actions">
-            <button className="admin-icon" onClick={() => setShowAdmin(true)} title="Panel Admin">
-              ⚙️
-            </button>
             <button className="cart-icon" onClick={() => setCartOpen(true)}>
               🛒 <span className="cart-badge">{cartItems.length}</span>
             </button>
@@ -107,12 +154,6 @@ function App() {
           </div>
         </div>
       </nav>
-
-      {/* Admin Panel */}
-      {showAdmin && <AdminPanel onClose={() => {
-        setShowAdmin(false);
-        loadProducts();
-      }} />}
 
       {/* Product Detail */}
       {selectedProduct && (
@@ -325,6 +366,18 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+// Componente App principal con Router
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<StorePage />} />
+        <Route path="/admin" element={<AdminRoute />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -19,7 +19,10 @@ E-commerce moderno y funcional enfocado en moda urbana para mujeres, con diseño
 - ✅ Descripción detallada
 - ✅ Rating y reseñas
 
-### ⚙️ **Panel de Administración**
+### ⚙️ **Panel de Administración Protegido**
+- ✅ Acceso via URL secreta `/admin`
+- ✅ Protegido con contraseña
+- ✅ Sesión temporal (4 horas)
 - ✅ Agregar/Editar/Eliminar productos
 - ✅ Importar/Exportar JSON
 - ✅ Selector visual de colores
@@ -31,6 +34,32 @@ E-commerce moderno y funcional enfocado en moda urbana para mujeres, con diseño
 - ✅ Animaciones suaves
 - ✅ 100% responsive
 - ✅ Fuentes juveniles (Poppins, Outfit)
+
+### 🔒 **Seguridad**
+- ✅ Panel admin protegido con contraseña
+- ✅ URL secreta no visible para clientes
+- ✅ Sesión temporal con expiración automática
+- ✅ Sin exposición de accesos administrativos
+
+---
+
+## 🔐 Acceso Administrativo
+
+### Para Administradores
+1. Ve a: `http://localhost:3000/admin` (o `tudominio.com/admin` en producción)
+2. Ingresa la contraseña: `chilling2025`
+3. Gestiona productos en el panel admin
+4. Cierra sesión al terminar
+
+### ⚠️ Importante
+- **Cambia la contraseña** antes de publicar (ver `SECURITY.md`)
+- **No compartas** la URL `/admin` públicamente
+- La sesión expira después de 4 horas
+
+### Documentación Completa
+- 📖 `ADMIN_GUIDE.md` - Guía completa de administración
+- 🔒 `SECURITY.md` - Configuración de seguridad
+- 📝 `CAMBIOS_SEGURIDAD.md` - Cambios recientes de seguridad
 
 ---
 

@@ -151,7 +151,7 @@ function AdminPanel({ onClose }) {
       <div className="admin-panel">
         <div className="admin-header">
           <h2>Panel de Administración</h2>
-          <button className="close-btn" onClick={onClose}>✕</button>
+          <button className="close-btn" onClick={() => window.location.href = '/'}>✕ Cerrar Sesión</button>
         </div>
 
         <div className="admin-actions">

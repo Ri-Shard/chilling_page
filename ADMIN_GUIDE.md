@@ -4,16 +4,40 @@
 
 Este sistema te permite gestionar los productos de tu tienda **Chilling** de dos formas:
 
-1. **Panel de Administración Visual** (interfaz gráfica)
+1. **Panel de Administración Visual** (interfaz gráfica protegida)
 2. **Archivo JSON** (edición manual)
+
+---
+
+## 🔐 Seguridad del Panel Admin
+
+El panel de administración está protegido con:
+- ✅ **URL Secreta**: `/admin` (no visible para clientes)
+- ✅ **Contraseña**: Requerida para acceder
+- ✅ **Sesión Temporal**: Expira después de 4 horas de inactividad
 
 ---
 
 ## 🎨 Opción 1: Panel de Administración Visual
 
 ### Acceso al Panel
-1. Haz clic en el icono de **engranaje (⚙️)** en la barra de navegación
-2. Se abrirá el Panel de Administración
+1. Ve a la URL: **`tudominio.com/admin`**
+   - En desarrollo local: **`http://localhost:3000/admin`**
+2. Ingresa la contraseña de administrador
+   - **Contraseña por defecto**: `chilling2025`
+3. El panel se abrirá automáticamente
+4. La sesión se mantendrá activa por 4 horas
+
+### Cerrar Sesión
+- Haz clic en "**✕ Cerrar Sesión**" en la esquina superior derecha
+- Esto cerrará tu sesión y te redirigirá a la tienda
+
+### Cambiar la Contraseña
+Para cambiar la contraseña del admin:
+1. Abre el archivo: `src/components/AdminLogin.js`
+2. Busca la línea: `const ADMIN_PASSWORD = "chilling2025";`
+3. Cambia `"chilling2025"` por tu nueva contraseña
+4. Guarda el archivo y recarga la aplicación
 
 ### Funciones Disponibles
 
@@ -212,11 +236,72 @@ Si quieres volver a cargar los productos originales del JSON:
 
 ---
 
+## 🔒 Recomendaciones de Seguridad
+
+### Para Producción
+Cuando publiques tu sitio web:
+
+1. **Cambia la contraseña por defecto** inmediatamente
+   - Usa una contraseña fuerte con mayúsculas, minúsculas, números y símbolos
+   - Ejemplo: `Ch1ll!ng@2025_S3cur3`
+
+2. **No compartas la URL `/admin`** públicamente
+   - Es una URL secreta solo para administradores
+   - No la incluyas en redes sociales ni lugares públicos
+
+3. **Mantén la sesión segura**
+   - Cierra sesión cuando termines de trabajar
+   - No dejes el panel abierto en computadoras públicas
+
+4. **Backups regulares**
+   - Exporta el JSON de productos regularmente
+   - Guarda copias de seguridad en un lugar seguro
+
+### Mejoras de Seguridad Futuras (Opcional)
+
+Para mayor seguridad, considera:
+- Implementar un backend con autenticación real (Firebase, Auth0, etc.)
+- Usar variables de entorno para la contraseña
+- Agregar autenticación de dos factores (2FA)
+- Implementar límite de intentos de login
+
+---
+
+## ❓ Troubleshooting
+
+### No puedo acceder al panel admin
+- Verifica que estés usando la URL correcta: `/admin`
+- Asegúrate de ingresar la contraseña correcta
+- Si olvidaste la contraseña, revisa el archivo `src/components/AdminLogin.js`
+
+### La sesión expiró
+- Las sesiones expiran después de 4 horas por seguridad
+- Simplemente vuelve a ingresar con tu contraseña
+
+### Los productos no se muestran
+- Verifica que el JSON tenga la estructura correcta
+- Revisa la consola del navegador (F12) para errores
+- Intenta borrar el localStorage y recargar
+
+### Los cambios no se guardan
+- Asegúrate de hacer clic en "Agregar Producto" o "Guardar Cambios"
+- Verifica que el navegador permita localStorage
+- Exporta el JSON como respaldo
+
+### Error al importar JSON
+- Verifica que el archivo tenga la extensión `.json`
+- Asegúrate de que la estructura sea correcta
+- Revisa que no haya comas extra al final
+
+---
+
 ## 📧 Soporte
 
 Si necesitas ayuda adicional, revisa los archivos:
 - `src/components/AdminPanel.js` - Código del panel admin
+- `src/components/AdminLogin.js` - Sistema de autenticación
+- `src/App.js` - Configuración de rutas
 - `src/products.json` - Archivo de productos
 
-¡Disfruta gestionando tu tienda Chilling! ✨💕
+¡Disfruta gestionando tu tienda Chilling de forma segura! ✨💕🔒
 
