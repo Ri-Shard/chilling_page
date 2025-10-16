@@ -1,6 +1,241 @@
+# 💕 Chilling - Tienda de Moda Urbana Femenina
+
+E-commerce moderno y funcional enfocado en moda urbana para mujeres, con diseño oscuro y acentos neón.
+
+## ✨ Características Principales
+
+### 🛍️ **Carrito de Compras Completo**
+- ✅ Agregar productos al carrito con talla y cantidad
+- ✅ Modificar cantidades
+- ✅ Eliminar productos
+- ✅ Códigos de descuento funcionales
+- ✅ Cálculo automático de envío
+- ✅ Persistencia en localStorage
+
+### 👗 **Detalle de Productos**
+- ✅ Modal con información completa
+- ✅ Selector de tallas (XS, S, M, L, XL)
+- ✅ Control de cantidad
+- ✅ Descripción detallada
+- ✅ Rating y reseñas
+
+### ⚙️ **Panel de Administración**
+- ✅ Agregar/Editar/Eliminar productos
+- ✅ Importar/Exportar JSON
+- ✅ Selector visual de colores
+- ✅ Gestión de inventario
+
+### 🎨 **Diseño Moderno**
+- ✅ Tema oscuro (negro predominante)
+- ✅ Acentos rosa neón y gradientes
+- ✅ Animaciones suaves
+- ✅ 100% responsive
+- ✅ Fuentes juveniles (Poppins, Outfit)
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## 🚀 Instalación y Uso
+
+### Requisitos
+- Node.js 14 o superior
+- npm o yarn
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone [url-del-repo]
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npm start
+```
+
+La aplicación se abrirá en [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📚 Guías de Uso
+
+- **[ADMIN_GUIDE.md](ADMIN_GUIDE.md)** - Guía completa para gestionar productos
+- **[CART_GUIDE.md](CART_GUIDE.md)** - Documentación del carrito y detalle de productos
+
+---
+
+## 🎯 Funcionalidades Clave
+
+### 🛒 **Carrito de Compras**
+1. Haz clic en cualquier producto para ver el detalle
+2. Selecciona talla y cantidad
+3. Agrega al carrito
+4. Gestiona tu carrito desde el icono 🛒
+5. Aplica códigos de descuento:
+   - `CHILLING10` - 10% OFF
+   - `CHILLING15` - 15% OFF
+   - `PRIMERA` - 15% OFF
+
+### ⚙️ **Panel Admin**
+1. Haz clic en el icono ⚙️ en la navegación
+2. Gestiona tus productos
+3. Exporta/Importa desde JSON
+4. Productos editables: `src/products.json`
+
+### 💾 **Datos Persistentes**
+- Productos: `localStorage.chillingProducts`
+- Carrito: `localStorage.chillingCart`
+- Se mantienen al cerrar el navegador
+
+---
+
+## 🎨 Paleta de Colores
+
+```css
+/* Primario */
+--primary-gradient: linear-gradient(135deg, #ff0080 0%, #ff8c00 100%);
+
+/* Secundario */
+--secondary-gradient: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+
+/* Fondo */
+--dark: #000000;
+--dark-card: #1a1a1a;
+
+/* Texto */
+--text-primary: #ffffff;
+--text-secondary: #a0a0a0;
+```
+
+---
+
+## 📦 Estructura del Proyecto
+
+```
+chilling_page/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── AdminPanel.js/css      # Panel de administración
+│   │   ├── ProductDetail.js/css   # Detalle de producto
+│   │   └── Cart.js/css            # Carrito de compras
+│   ├── App.js                     # Componente principal
+│   ├── App.css                    # Estilos principales
+│   ├── products.json              # Base de datos de productos
+│   └── ...
+├── ADMIN_GUIDE.md                 # Guía de administración
+├── CART_GUIDE.md                  # Guía del carrito
+└── README.md                      # Este archivo
+```
+
+---
+
+## 🔧 Personalización
+
+### Cambiar Productos por Defecto
+Edita `src/products.json`:
+```json
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Nombre del Producto",
+      "price": "89.900",
+      "category": "Tops",
+      "color": "linear-gradient(...)",
+      "featured": true,
+      "sizes": ["S", "M", "L"],
+      "description": "Descripción aquí"
+    }
+  ]
+}
+```
+
+### Cambiar Códigos de Descuento
+En `src/components/Cart.js`, línea ~18:
+```javascript
+const codes = {
+  'CHILLING10': subtotal * 0.10,
+  'NUEVOPROMO': subtotal * 0.20
+};
+```
+
+### Cambiar Límite de Envío Gratis
+En `src/components/Cart.js`, línea ~12:
+```javascript
+const shipping = subtotal > 150000 ? 0 : 10000;
+```
+
+---
+
+## 🎯 Próximos Pasos Sugeridos
+
+### Fase 1: Backend
+- [ ] API REST para productos
+- [ ] Base de datos (MongoDB/PostgreSQL)
+- [ ] Autenticación de usuarios
+- [ ] Sistema de órdenes
+
+### Fase 2: Pagos
+- [ ] Integración con Stripe/PayU/Mercado Pago
+- [ ] Procesamiento de pagos
+- [ ] Confirmación de órdenes por email
+- [ ] Webhooks de pago
+
+### Fase 3: Extras
+- [ ] Sistema de favoritos real
+- [ ] Reseñas y ratings
+- [ ] Filtros y búsqueda avanzada
+- [ ] Recomendaciones personalizadas
+
+---
+
+## 🐛 Solución de Problemas
+
+### Los productos no se muestran
+```javascript
+// En la consola del navegador (F12):
+localStorage.removeItem('chillingProducts')
+// Recarga la página
+```
+
+### El carrito está vacío pero muestra items
+```javascript
+localStorage.removeItem('chillingCart')
+```
+
+### Resetear todo
+```javascript
+localStorage.clear()
+// Recarga la página
+```
+
+---
+
+## 📱 Responsive
+
+- ✅ Desktop (1920px+)
+- ✅ Laptop (1440px)
+- ✅ Tablet (768px)
+- ✅ Mobile (375px+)
+
+---
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+---
 
 ## Available Scripts
 

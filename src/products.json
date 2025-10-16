@@ -1,0 +1,65 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Hoodie Oversized",
+      "price": "89.900",
+      "category": "Hoodies",
+      "color": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "featured": true,
+      "sizes": ["S", "M", "L", "XL"],
+      "description": "Hoodie oversized cómoda y con estilo urbano"
+    },
+    {
+      "id": 2,
+      "name": "Crop Top Básico",
+      "price": "45.900",
+      "category": "Tops",
+      "color": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      "featured": true,
+      "sizes": ["XS", "S", "M", "L"],
+      "description": "Crop top básico perfecto para cualquier ocasión"
+    },
+    {
+      "id": 3,
+      "name": "Biker Shorts",
+      "price": "49.900",
+      "category": "Shorts",
+      "color": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+      "featured": true,
+      "sizes": ["XS", "S", "M", "L"],
+      "description": "Shorts deportivos ideales para gym o casual"
+    },
+    {
+      "id": 4,
+      "name": "Camiseta Boyfriend",
+      "price": "55.900",
+      "category": "Camisetas",
+      "color": "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+      "featured": true,
+      "sizes": ["S", "M", "L", "XL"],
+      "description": "Camiseta boyfriend oversize con fit relajado"
+    },
+    {
+      "id": 5,
+      "name": "Set Deportivo",
+      "price": "125.900",
+      "category": "Sets",
+      "color": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+      "featured": true,
+      "sizes": ["XS", "S", "M", "L"],
+      "description": "Set completo de top y leggings deportivos"
+    },
+    {
+      "id": 6,
+      "name": "Vestido Casual",
+      "price": "79.900",
+      "category": "Vestidos",
+      "color": "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+      "featured": true,
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "description": "Vestido casual perfecto para el día a día"
+    }
+  ]
+}
+
